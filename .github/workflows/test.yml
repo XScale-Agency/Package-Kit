@@ -12,7 +12,6 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         node-version:
           - 20.10.0
-          - 21.x
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,7 +25,7 @@ jobs:
         run: corepack enable
 
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Cache Node Modules ( Yarn )
         uses: actions/cache@v4
