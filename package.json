@@ -16,6 +16,14 @@
     ".": "./build/index.js",
     "./types": "./build/src/types.js"
   },
+  "homepage": "https://github.com/XScale-Agency/Package-Kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XScale-Agency/Package-Kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/XScale-Agency/Package-Kit/issues"
+  },
   "scripts": {
     "clean": "del-cli build",
     "typecheck": "tsc --noEmit",
