@@ -5,25 +5,7 @@ on:
   - pull_request
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install
-        run: npm install
-      - name: Run lint
-        run: npm run lint
-
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install
-        run: npm install
-      - name: Run typecheck
-        run: npm run typecheck
-
-  tests:
+  check:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -32,29 +14,27 @@ jobs:
           - 20.10.0
           - 21.x
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install
-        run: npm install
-      - name: Run tests
-        run: npm test
-  windows:
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        node-version:
-          - 20.10.0
-          - 21.x
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        run: yarn
+
+      - name: Cache Node Modules ( Yarn )
+        uses: actions/cache@v4
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install
-        run: npm install
-      - name: Run tests
-        run: npm test
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Run check
+        run: yarn check
