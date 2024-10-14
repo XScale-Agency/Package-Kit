@@ -13,8 +13,10 @@
     "build/index.js"
   ],
   "exports": {
-    ".": "./build/index.js",
-    "./types": "./build/src/types.js"
+    ".": {
+      "types": "./index.js",
+      "default": "./build/index.js"
+    }
   },
   "homepage": "https://github.com/XScale-Agency/Package-Kit#readme",
   "repository": {
@@ -33,7 +35,7 @@
     "pretest": "yarn check",
     "test": "c8 yarn quick:test",
     "prebuild": "yarn check && yarn clean",
-    "build": "tsc",
+    "build": "yarn check && tsc",
     "release": "yarn check && changeset version && changeset publish",
     "version": "yarn build",
     "prepublishOnly": "yarn build",
