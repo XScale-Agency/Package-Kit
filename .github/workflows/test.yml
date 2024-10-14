@@ -25,7 +25,7 @@ jobs:
         run: corepack enable
 
       - name: Install
-        run: yarn install --immutable
+        run: yarn install
 
       - name: Cache Node Modules ( Yarn )
         uses: actions/cache@v4

@@ -8,7 +8,6 @@ coverage
 *.log
 build
 dist
-yarn.lock
 shrinkwrap.yaml
 package-lock.json
 
