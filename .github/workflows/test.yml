@@ -26,7 +26,7 @@ jobs:
         run: corepack enable
 
       - name: Install
-        run: yarn
+        run: yarn install --frozen-lockfile
 
       - name: Cache Node Modules ( Yarn )
         uses: actions/cache@v4
