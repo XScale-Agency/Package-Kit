@@ -3,7 +3,6 @@ coverage
 .DS_STORE
 .nyc_output
 .idea
-.vscode/
 *.sublime-project
 *.sublime-workspace
 *.log
@@ -12,3 +11,11 @@ dist
 yarn.lock
 shrinkwrap.yaml
 package-lock.json
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

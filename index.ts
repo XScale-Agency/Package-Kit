@@ -7,4 +7,4 @@
 |
 */
 
-export { configure } from './configure.js'
+export * from './src/add.js'
